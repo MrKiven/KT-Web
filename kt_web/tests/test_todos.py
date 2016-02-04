@@ -1,16 +1,16 @@
 # -*- coding:utf-8 -*-
 
-import requests
+from kt_web.api.app import app
+import pytest
 
 
-def test_get_todos():
-    r = requests.get('http://localhost:5000/test').json()
-    assert r == {'test': 'something'}
+@pytest.fixture
+def client():
+    return app.test_client()
 
 
-def test_put_todos():
-    r = requests.put('http://localhost:5000/todo1',
-                     data={
-                         'data': 'todo1'
-                     }).json()
-    assert r == {'todo1': 'todo1'}
+def test_todos(client):
+    r = client.get('/todos/test')
+    # `r` is a Response streamd
+    assert r.status_code == 200
+    assert r.data.rstrip() == '"something"'
