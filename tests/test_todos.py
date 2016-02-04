@@ -9,7 +9,7 @@ def client():
     return app.test_client()
 
 
-def test_todos(client):
+def test_todo(client):
     r = client.get('/todos/test')
     # `r` is a Response streamd
     assert r.status_code == 200
