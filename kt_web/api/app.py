@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from flask import Flask, jsonify
+from flask import Flask, json, jsonify, make_response
 from flask_restful import Api
 
 from exc import NotFoundResourceException
@@ -12,6 +12,13 @@ app = Flask(__name__)
 api = Api(app)
 
 
+@api.representation('application/json')
+def output_json(data, code, headers=None):
+    res = make_response(json.dumps(data), code)
+    res.headers.extend(headers or {})
+    return res
+
+
 @app.errorhandler(NotFoundResourceException)
 def handler_error(err):
     res = jsonify(err.to_dict())
@@ -20,5 +27,5 @@ def handler_error(err):
 
 
 api.add_resource(Todo, '/todos/<string:todo_id>')
-api.add_resource(Todos, '/todos/')
+api.add_resource(Todos, '/todos')
 api.add_resource(HelloWorld, '/hello')
