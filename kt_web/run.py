@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
 
-from api.app import app
+from api import app
 
 app.run()
