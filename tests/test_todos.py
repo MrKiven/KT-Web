@@ -6,7 +6,9 @@ import pytest
 
 @pytest.fixture
 def client():
-    return app.test_client()
+    client = app.test_client()
+    client.testing = True
+    return client
 
 
 def test_todo(client):
@@ -14,3 +16,8 @@ def test_todo(client):
     # `r` is a Response streamd
     assert r.status_code == 200
     assert r.data.rstrip() == '"something"'
+
+
+def test_hello(client):
+    r = client.get('/hello')
+    assert r.status_code == 200
