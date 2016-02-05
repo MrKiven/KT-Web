@@ -11,6 +11,8 @@ from hello import HelloWorld
 app = Flask(__name__)
 api = Api(app)
 
+app.config.from_object('config.config.DevConfig')
+
 
 @api.representation('application/json')
 def output_json(data, code, headers=None):
