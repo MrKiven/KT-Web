@@ -32,6 +32,9 @@ class CatchWarnMixin(object):
             @functools.wraps(func)
             def wrapper(*args, **kwargs):
                 warnings.simplefilter(action)
-                return func(*args, **kwargs)
+                try:
+                    return func(*args, **kwargs)
+                finally:
+                    warnings.resetwarnings()
             return wrapper
         return so
