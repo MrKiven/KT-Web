@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 def _get_version():
     v_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                               'rest_arch', '__init__.py')
+                               'kt_web', '__init__.py')
     ver_info_str = re.compile(r".*version_info = \((.*?)\)", re.S). \
         match(open(v_file_path).read()).group(1)
     return re.sub(r'(\'|"|\s+)', '', ver_info_str).replace(',', '.')
