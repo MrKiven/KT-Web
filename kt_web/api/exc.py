@@ -2,6 +2,7 @@
 
 
 class KTWEBException(Exception):
+    """API Exception Handler Class"""
     status_code = 500
 
     def __init__(self, msg, status_code=None, payload=None):
