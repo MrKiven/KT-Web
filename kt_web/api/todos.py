@@ -1,13 +1,16 @@
 # -*- coding:utf-8 -*-
 
-from flask import request
-from flask_restful import Resource
+from flask import Blueprint, request
+from flask_restful import Api, Resource
 
 from exc import NotFoundResourceException
 
 todos = {
     'test': 'something'
 }
+
+bp = Blueprint('todos', __name__)
+api = Api(bp)
 
 
 class Todo(Resource):
@@ -25,3 +28,6 @@ class Todo(Resource):
 class Todos(Resource):
     def get(self):
         return todos
+
+api.add_resource(Todos, '/todos')
+api.add_resource(Todo, '/todos/<string:todo_id>')

@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
 
-from kt_web.api import app
+from kt_web import app
 
 app.run()
