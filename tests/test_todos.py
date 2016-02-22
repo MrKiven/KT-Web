@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from kt_web.api.app import app
+from kt_web.app import app
 import pytest
 
 
@@ -12,12 +12,12 @@ def client():
 
 
 def test_todo(client):
-    r = client.get('/todos/test')
+    r = client.get('/api/todos/test')
     # `r` is a Response streamd
     assert r.status_code == 200
     assert r.data.rstrip() == '"something"'
 
 
 def test_hello(client):
-    r = client.get('/hello')
+    r = client.get('/api/hello')
     assert r.status_code == 200
