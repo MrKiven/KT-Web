@@ -9,7 +9,7 @@ from api.exc import NotFoundResourceException
 from api.todos import bp as todo_bp
 from api.hello import bp as hello_bp
 
-from consts import DEV_CONFIG
+from settings import current_env
 
 
 class KTWEB(Flask):
@@ -17,7 +17,7 @@ class KTWEB(Flask):
     def __init__(self):
         super(KTWEB, self).__init__('KTWEB')
         self.url_prefix = '/api'
-        self.config.from_object(DEV_CONFIG)
+        self.config.from_object(current_env)
         self.register_blueprints()
         self.register_error_handlers()
         self.register_before_request_funcs()
