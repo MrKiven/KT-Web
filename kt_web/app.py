@@ -6,8 +6,7 @@ from flask import Flask, request, jsonify
 
 from api.exc import NotFoundResourceException
 # Resources
-from api.todos import bp as todo_bp
-from api.hello import bp as hello_bp
+from api import ktweb_bp
 
 from settings import current_env
 
@@ -23,8 +22,7 @@ class KTWEB(Flask):
         self.register_before_request_funcs()
 
     def register_blueprints(self):
-        self.register_blueprint(hello_bp, url_prefix=self.url_prefix)
-        self.register_blueprint(todo_bp, url_prefix=self.url_prefix)
+        self.register_blueprint(ktweb_bp, url_prefix=self.url_prefix)
 
     def register_error_handlers(self):
         self.register_error_handler(NotFoundResourceException, self.not_found)
