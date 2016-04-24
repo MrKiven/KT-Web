@@ -1,16 +1,12 @@
 # -*- coding:utf-8 -*-
 
-from flask import Blueprint, request
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Resource, reqparse
 
 from exc import NotFoundResourceException
 
 todos = {
     'test': 'something'
 }
-
-bp = Blueprint('todos', __name__)
-api = Api(bp)
 
 
 class ParserMixin(object):
@@ -41,6 +37,3 @@ class Todo(Resource, ParserMixin):
 class Todos(Resource):
     def get(self):
         return todos
-
-api.add_resource(Todos, '/todos')
-api.add_resource(Todo, '/todos/<string:todo_id>')
