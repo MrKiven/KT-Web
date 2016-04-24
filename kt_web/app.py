@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify
 from api.exc import NotFoundResourceException
 # Resources
 from api import ktweb_bp
+from models import init_db
 
 from settings import current_env
 
@@ -44,3 +45,4 @@ class KTWEB(Flask):
         return res
 
 app = KTWEB()
+init_db(app)
