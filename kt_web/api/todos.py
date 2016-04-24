@@ -2,7 +2,7 @@
 
 from flask_restful import Resource, reqparse
 
-from exc import NotFoundResourceException
+from kt_web.models.record import TodosModel
 
 todos = {
     'test': 'something'
@@ -22,10 +22,7 @@ class ParserMixin(object):
 
 class Todo(Resource, ParserMixin):
     def get(self, todo_id):
-        todo = todos.get(todo_id, None)
-        if todo is None:
-            raise NotFoundResourceException('todo `{}` not found'.format(todo_id))
-        return todo
+        return TodosModel.get(todo_id)
 
     def put(self, todo_id):
         data = self.get_key('data', required=True)
@@ -36,4 +33,4 @@ class Todo(Resource, ParserMixin):
 
 class Todos(Resource):
     def get(self):
-        return todos
+        return TodosModel.all()
