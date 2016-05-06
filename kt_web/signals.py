@@ -26,5 +26,6 @@ def register_signals_receivers():
 def on_signal_before_api_called(ctx):
     pass
 
+
 def on_signal_after_api_called(ctx):
     print 'cost --->', ctx.cost

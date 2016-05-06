@@ -57,6 +57,7 @@ class KTWEB(Flask):
                 return
             request.end_at = time.time()
             self.ctx.end_at = request.end_at
+            self.ctx.request_ctx = request
             after_api_called.send(self.ctx)
         send_metrics()
         return resp
