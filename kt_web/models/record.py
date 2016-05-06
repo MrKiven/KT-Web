@@ -24,7 +24,8 @@ class TodosModel(db.Model):
             filter(cls.todo_name == todo_name).first()
         if res:
             return res.to_dict()
-        raise NotFoundResourceException('todo `{}` not found'.format(todo_name))
+        raise NotFoundResourceException(
+            'todo `{}` not found'.format(todo_name))
 
     @classmethod
     def all(cls):
