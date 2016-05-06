@@ -2,24 +2,29 @@
 
 from blinker import signal
 
-test = signal('test')
+
+class SignalContext(object):
+    pass
 
 
-class Receiver(object):
+class ApiCallSignalContext(SignalContext):
 
-    def __init__(self):
-
-        def handle_frobnicated(sender, **kwargs):
-            self.on_frobnicated(sender, **kwargs)
-
-        self.handle_frobnicated = handle_frobnicated
-        test.connect(handle_frobnicated)
-
-    def on_frobnicated(self, sender, **kwargs):
-        print sender, '===', kwargs['message']
+    @property
+    def cost(self):
+        return '%.2f ms' % (1000 * (self.end_at - self.start_at))
 
 
-if __name__ == '__main__':
-    r = Receiver()
-    for i in xrange(10):
-        test.send('Sender %s' % i, message='hello')
+before_api_called = signal('before_api_called')
+after_api_called = signal('after_api_called')
+
+
+def register_signals_receivers():
+    before_api_called.connect(on_signal_before_api_called)
+    after_api_called.connect(on_signal_after_api_called)
+
+
+def on_signal_before_api_called(ctx):
+    pass
+
+def on_signal_after_api_called(ctx):
+    print 'cost --->', ctx.cost
