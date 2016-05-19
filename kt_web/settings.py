@@ -3,3 +3,4 @@
 from conf import settings
 
 current_env = settings.dev
+ASYNC_ENABLED = False
