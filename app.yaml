@@ -1,0 +1,6 @@
+app_name: skt.web
+settings: kt_web.settings
+services:
+    wsgi:
+        app: kt_web.app:app
+        worker_class: gevent
