@@ -2,6 +2,7 @@
 
 from . import db
 from kt_web.api.exc import NotFoundResourceException
+from kt_web.consts import NOT_FOUND_RESOURCE_MESSAGE
 
 
 class TodosModel(db.Model):
@@ -25,7 +26,7 @@ class TodosModel(db.Model):
         if res:
             return res.to_dict()
         raise NotFoundResourceException(
-            'todo `{}` not found'.format(todo_name))
+            NOT_FOUND_RESOURCE_MESSAGE.format(cls.__name__, todo_name))
 
     @classmethod
     def all(cls):
