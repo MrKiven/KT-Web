@@ -1,4 +1,4 @@
 # KT-Web
 KT WEB
 
-[![travis-ci](http://img.shields.io/travis/eleme/thriftpy/develop.svg?style=flat)](https://travis-ci.org/MrKiven/KT-Web)
+[![travis-ci](https://api.travis-ci.org/MrKiven/KT-Web.svg)](https://travis-ci.org/MrKiven/KT-Web)
