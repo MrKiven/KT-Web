@@ -35,6 +35,8 @@ setup(
         'mock==1.0.1',
     ],
     entry_points={"console_scripts": entry_points},
-    install_requires=[],
+    install_requires=[
+        'rest_arch==0.1.4',
+    ],
 
 )
