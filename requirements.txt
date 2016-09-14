@@ -7,3 +7,4 @@ mock==1.0.1
 Flask-SQLAlchemy
 blinker==1.3
 PyYAML==3.11
+gevent==1.1.2
