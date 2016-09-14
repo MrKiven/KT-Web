@@ -42,7 +42,7 @@ class EventManager(object):
 
     Example:
 
-        from zeus_core.event_manager import event_manager
+        from kt_web.event_manager import event_manager
 
         def task(stop_event):
             while not stop_event.is_set():
